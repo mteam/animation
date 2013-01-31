@@ -1,0 +1,16 @@
+{
+  "name": "animation",
+  "repo": "mteam/animation",
+  "version": "0.1.0",
+  "dependencies": {
+    "mteam/rect": "*",
+    "mteam/drawable": "*"
+  },
+  "scripts": [
+    "index.js",
+    "animation.js",
+    "linear.js",
+    "nonlinear.js",
+    "reel.js"
+  ]
+}
