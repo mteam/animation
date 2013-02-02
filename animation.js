@@ -20,6 +20,7 @@ Animation.prototype.current = function() {
 
 Animation.prototype.next = function() {
   if (++this.active == this.sequence.length) {
+    this.onEnd();
     this.rewind();
   }
 };
@@ -34,5 +35,7 @@ Animation.prototype.draw = function(ctx, x, y) {
 
   image.drawRect(ctx, rect, x, y);
 };
+
+Animation.prototype.onEnd = function() {};
 
 module.exports = Animation;
