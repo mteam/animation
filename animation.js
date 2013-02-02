@@ -10,21 +10,21 @@ function Animation(reel, sequence) {
   }
 }
 
-Animation.protototype.current = function() {
+Animation.prototype.current = function() {
   return this.sequence[this.active];
 };
 
-Animation.protototype.next = function() {
+Animation.prototype.next = function() {
   if (++this.active == this.sequence.length) {
     this.rewind();
   }
 };
 
-Animation.protototype.rewind = function() {
+Animation.prototype.rewind = function() {
   this.active = 0;
 }; 
 
-Animation.protototype.draw = function(ctx, x, y) {
+Animation.prototype.draw = function(ctx, x, y) {
   var image = this.reel.image,
       rect = this.reel.frames[this.current()];
 
