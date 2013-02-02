@@ -1,3 +1,5 @@
+var Drawable = require('drawable');
+
 function Animation(reel, sequence) {
   this.reel = reel;
   this.sequence = sequence;
@@ -9,6 +11,8 @@ function Animation(reel, sequence) {
     }
   }
 }
+
+Animation.prototype = Object.create(Drawable.prototype);
 
 Animation.prototype.current = function() {
   return this.sequence[this.active];
