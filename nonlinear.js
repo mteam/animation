@@ -10,6 +10,8 @@ function Nonlinear(reel, pairs) {
   this.timer = 0;
 }
 
+Nonlinear.prototype = Object.create(Animation.prototype);
+
 Nonlinear.prototype.interval = function() {
   return this.intervals[this.active];
 };

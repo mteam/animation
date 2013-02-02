@@ -7,7 +7,7 @@ function Linear(reel, sequence, interval) {
   this.timer = 0;
 }
 
-Linear.prototype = Object.create(Animation);
+Linear.prototype = Object.create(Animation.prototype);
 
 Linear.prototype.update = function(dt) {
   this.timer += dt;
