@@ -1,11 +1,6 @@
-var Rect = require('rect'),
-    Drawable = require('drawable');
+var Rect = require('rect');
 
 function Reel(image, width, height) {
-  if (!(image instanceof Drawable)) {
-    throw new Error('image is not drawable');
-  }
-
   this.image = image;
   this.setup(width, height);
 }

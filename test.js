@@ -1,7 +1,6 @@
 var expect = require('expect.js'),
     sham = require('sham'),
-    Rect = require('rect'),
-    Drawable = require('drawable');
+    Rect = require('rect');
 
 var Reel = require('./reel'),
     Animation = require('./animation'),
@@ -10,7 +9,7 @@ var Reel = require('./reel'),
 
 describe('animation', function() {
 
-  var image = new Drawable;
+  var image = {};
   image.width = 320;
   image.height = 240;
 

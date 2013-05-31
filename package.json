@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
-    "rect": "git://github.com/mteam/rect.git",
-    "drawable": "git://github.com/mteam/drawable.git"
+    "rect": "git://github.com/mteam/rect.git"
   }
 }
