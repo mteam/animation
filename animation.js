@@ -27,7 +27,7 @@ Animation.prototype.rewind = function() {
 
 Animation.prototype.draw = function(ctx, x, y) {
   var image = this.reel.image,
-      rect = this.reel.frames[this.current()];
+      rect = this.reel.frame(this.current());
 
   image.drawRect(ctx, rect, x, y);
 };

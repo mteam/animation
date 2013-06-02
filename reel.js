@@ -25,4 +25,8 @@ Reel.prototype.setup = function(width, height) {
   }
 };
 
+Reel.prototype.frame = function(n) {
+  return this.frames[n - 1];
+};
+
 module.exports = Reel;
