@@ -2,14 +2,16 @@
   "name": "animation",
   "repo": "mteam/animation",
   "version": "0.1.0",
-  "dependencies": {
-    "mteam/rect": "*"
+  "development": {
+    "visionmedia/mocha": "*",
+    "timoxley/assert": "*",
+    "miscer/sham": "*",
+    "mteam/spritesheet": "*"
   },
   "scripts": [
     "index.js",
     "animation.js",
     "linear.js",
-    "nonlinear.js",
-    "reel.js"
+    "nonlinear.js"
   ]
 }

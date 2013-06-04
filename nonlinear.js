@@ -1,10 +1,10 @@
 var Animation = require('./animation');
 
-function Nonlinear(reel, pairs) {
+function Nonlinear(spritesheet, pairs) {
   var sequence = pairs.map(function(pair) { return pair[0] }),
       intervals = pairs.map(function(pair) { return pair[1] });
 
-  Animation.call(this, reel, sequence);
+  Animation.call(this, spritesheet, sequence);
 
   this.intervals = intervals;
   this.timer = 0;

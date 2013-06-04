@@ -1,11 +1,10 @@
-var expect = require('expect.js'),
+var assert = require('assert'),
     sham = require('sham'),
-    Rect = require('rect');
+    Spritesheet = require('spritesheet');
 
-var Reel = require('./reel'),
-    Animation = require('./animation'),
-    Linear = require('./linear'),
-    Nonlinear = require('./nonlinear');
+var Animation = require('animation/animation.js'),
+    Linear = require('animation/linear.js'),
+    Nonlinear = require('animation/nonlinear.js');
 
 describe('animation', function() {
 
@@ -13,104 +12,79 @@ describe('animation', function() {
   image.width = 320;
   image.height = 240;
 
-  describe('Reel', function() {
-
-    it('should create frames', function() {
-      var reel = new Reel(image, 80, 40);
-
-      expect(reel.frames).to.have.length(24);
-    });
-
-    it('should create rects', function() {
-      var reel = new Reel(image, 80, 40);
-
-      reel.frames.forEach(function(frame) {
-        expect(frame).to.be.a(Rect);
-      });
-
-      expect(String(reel.frames[6])).to.be('rect[160;40 80x40]');
-    });
-
-  });
-
   describe('Animation', function() {
 
-    var reel = new Reel(image, 80, 40);
+    var ss = new Spritesheet(image, 80, 40);
 
     it('should switch frames', function() {
-      var a = new Animation(reel, [1, 9, 7]);
+      var a = new Animation(ss, [1, 9, 7]);
 
       [1, 9, 7, 1, 9].forEach(function(i) {
-        expect(a.current()).to.be(i);
+        assert.equal(a.current(), i);
         a.next();
       });
     });
 
     it('should throw when sequence is invalid', function() {
-      expect(function() {
-        new Animation(reel, [1, 34]);
-      }).to.throwError(/invalid frame: 34/);
+      assert.throws(function() {
+        new Animation(ss, [1, 34]);
+      }, /invalid frame: 34/);
     });
 
     it('should draw current frame', function() {
-      var a = new Animation(reel, [6]);
+      var a = new Animation(ss, [6]);
 
-      var ctx = {},
-          rect = reel.frames[6];
+      var ctx = sham.mock();
+      ctx.spy('drawImage').called();
 
-      image.drawRect = sham
-        .spy()
-        .args(ctx, rect, 10, 20)
-        .called();
+      a.draw(ctx, 0, 0);
 
-      a.draw(ctx, 10, 20);
-
-      image.drawRect.check();
+      ctx.check();
     });
 
   });
 
   describe('Linear', function() {
 
-    var reel = new Reel(image, 80, 40);
+    var ss = new Spritesheet(image, 80, 40);
 
     it('should work', function() {
-      var a = new Linear(reel, [1, 3, 9], 0.3);
+      var a = new Linear(ss, [1, 3, 9], 0.3);
 
-      expect(a.current()).to.be(1);
+      assert.equal(a.current(), 1);
 
       a.update(0.2);
-      expect(a.current()).to.be(1);
+      assert.equal(a.current(), 1);
 
       a.update(0.4);
-      expect(a.current()).to.be(9);
+      assert.equal(a.current(), 9);
 
       a.update(0.7);
-      expect(a.current()).to.be(3);
+      assert.equal(a.current(), 3);
     });
 
   });
 
   describe('Nonlinear', function() {
 
-    var reel = new Reel(image, 80, 40);
+    var ss = new Spritesheet(image, 80, 40);
 
     it('should work', function() {
-      var a = new Nonlinear(reel, [[2, 0.2], [4, 0.4], [6, 0.6]]);
+      var a = new Nonlinear(ss, [[2, 0.2], [4, 0.4], [6, 0.6]]);
 
-      expect(a.current()).to.be(2);
+      assert.equal(a.current(), 2);
       
       a.update(0.1);
-      expect(a.current()).to.be(2);
+      assert.equal(a.current(), 2);
       
       a.update(0.1);
-      expect(a.current()).to.be(4);
+      assert.equal(a.current(), 4);
       
       a.update(0.5);
-      expect(a.current()).to.be(6);
+      assert.equal(a.current(), 6);
       
       a.update(0.8);
-      expect(a.current()).to.be(4);
+      assert.equal(a.current(), 4);
     });
 
   });

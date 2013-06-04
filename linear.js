@@ -1,7 +1,7 @@
 var Animation = require('./animation');
 
-function Linear(reel, sequence, interval) {
-  Animation.call(this, reel, sequence);
+function Linear(spritesheet, sequence, interval) {
+  Animation.call(this, spritesheet, sequence);
 
   this.interval = interval;
   this.timer = 0;
