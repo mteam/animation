@@ -1,6 +1,7 @@
 function Animation(spritesheet, sequence) {
   this.spritesheet = spritesheet;
   this.sequence = sequence;
+  this.onEnd = null;
   this.rewind();
 
   sequence.forEach(function(n) {
@@ -18,7 +19,7 @@ Animation.prototype = {
 
   next: function() {
     if (++this.active == this.sequence.length) {
-      this.onEnd();
+      this.onEnd && this.onEnd();
       this.rewind();
     }
   },
@@ -30,9 +31,7 @@ Animation.prototype = {
   draw: function(ctx, x, y) {
     var frame = this.current();
     this.spritesheet.get(frame).draw(ctx, x, y);
-  },
-
-  onEnd: function() {}
+  }
 
 };
 
